@@ -10,7 +10,6 @@
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"
     />
-
     <cache name="user-cache"
            maxElementsInMemory="10000"
            eternal="false"
