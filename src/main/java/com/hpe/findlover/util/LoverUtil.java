@@ -12,8 +12,6 @@ import org.springframework.beans.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -84,6 +82,7 @@ public final class LoverUtil {
 			userBasicStarPick=userBasicStarList;
 			logger.debug("用户条件的星级用户有");
 		}
+
 		for (UserBasic userbasic : userBasicStarPick) {
 			userbasic.setAge(LoverUtil.getAge(userbasic.getBirthday()));
 		}
@@ -225,7 +224,7 @@ public final class LoverUtil {
 	}
 
 	public static int getDiffOfDays(Date start ,Date deadline) {
-		return getDiff(TimeUnit.DAYS,start, deadline);
+		return getDiff(TimeUnit.DAYS, start, deadline);
 	}
 
 	/**
