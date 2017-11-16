@@ -107,21 +107,15 @@ public class SearchController {
             return new UserInfo("error",null);
         }
         logger.info("more users ids.length="+ids.length);
-        PageHelper.startPage(pageNum, 6);
-        List<UserBasic> userBasicList = userService.selectUserByIds(ids);
-
-        List<UserBasic> labelUser = new ArrayList<>();
         UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
-        for (UserBasic userBasic:userBasicList){
-            if (userBasic.getSex().equals(user.getSexual())){
-                labelUser.add(userBasic);
-            }
-        }
-        if (labelUser.size()>0) {
-            labelUser.forEach(logger::info);
+        PageHelper.startPage(pageNum, 6);
+        List<UserBasic> userBasicList = userService.selectUserByIdsAndSex(ids,user.getSexual());
+        userBasicList.forEach(logger::info);
+
+        if (userBasicList.size()>0) {
             //封装用户数据
-            LoverUtil.formatUserInfo(labelUser);
-            PageInfo page = new PageInfo(labelUser);
+            LoverUtil.formatUserInfo(userBasicList);
+            PageInfo page = new PageInfo(userBasicList);
             return new UserInfo("success", page);
         }else {
             return new UserInfo("error", null);
