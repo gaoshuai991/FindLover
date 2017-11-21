@@ -232,8 +232,8 @@
             <div class="snap container-fluid">
                 <div class="snap-1">
                     <div>
-                        <a th:href="@{'profile/'+${session.user.id}}"><img
-                                th:src="@{'file?path='+${session.user.photo}}"
+                        <a th:href="@{'profile/'+${session.user.id}}">
+                            <img th:src="@{'file?path='+${session.user.photo}}"
                                 class="snap-photo"/></a>
                     </div>
                     <div>
