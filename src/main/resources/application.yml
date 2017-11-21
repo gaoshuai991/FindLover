@@ -20,7 +20,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.17.46.182:3306/findlover?useSSL=false # your profile
+      url: jdbc:mysql://172.17.46.192:3306/findlover?useSSL=false # your profile
       username: root # your profile
       password: gss991 # your profile
       initial-size: 1

@@ -10,7 +10,7 @@ function initEssayForm() {
             title: [/^([\u4E00-\u9FA5]|\w){2,30}$/, "标题应为2-30位字符"]
         },
         fields: {
-            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]',
+            'ephoto': 'required;accept[png|jpg|bmp|gif|jpeg]',
             'title': 'required;title',
             'essays': 'required'
         },
@@ -27,6 +27,7 @@ function initEssayForm() {
 
 //初始化ueditor插件
 function initUeditor() {
+    alert("122121");
     window.UEDITOR_HOME_URL = contextPath + "plugins/ueditor/";
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例

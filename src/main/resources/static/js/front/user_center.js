@@ -254,6 +254,7 @@ function initResetPwd() {
     //alert($("#form-reset-pwd").serialize());
     $("#form-reset-pwd").validator({
         fields: {
+            'oldpwd': 'required;password',
             'newpwd': '密码:required;password',
             'password': 'required;match(newpwd)'
         },
@@ -264,7 +265,7 @@ function initResetPwd() {
             /*var me = this;
             //提交表单之前，hold住表单，防止表单重复提交
             me.holdSubmit();*/
-            resetUser(form, "basic");
+            resetUser(form, "modifyPwd");
         }
     });
 }
@@ -284,8 +285,12 @@ function initResetAuth() {
 //充值
 function initRechargeValidator() {
     $("#recharge").validator({
+        rules: {
+            // 使用正则表达式定义规则
+            money: [/^[1-9]\d{0,3}$/, "请填写数字"],
+        },
         fields: {
-            'cost': 'required;digits'
+            'cost': 'required;money;range(1~9999)'
         },
         theme: 'bootstrap',
         timely: 2,

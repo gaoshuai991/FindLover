@@ -9,6 +9,7 @@ import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
@@ -379,6 +380,7 @@ public class UserCenterController {
 			if (userBasic.getPassword() != null) {
 				userBasic.setPassword(new Md5Hash(userBasic.getPassword(),userBasic.getEmail()).toString());
 			}
+			//new Md5Hash(user.getPassword(), ByteSource.Util.bytes(user.getEmail())).toString()
 			logger.debug(userBasic);
 			if(userBasic.getSexual()!=null) {
 				UserPick userPick = new UserPick();
@@ -391,6 +393,16 @@ public class UserCenterController {
 			userService.userAttrHandler(userBasic);
 			session.setAttribute("user", userBasic);
 		}
+		return result;
+	}
+
+	@PutMapping("modifyPwd")
+	@ResponseBody
+	public Object resetPwd(@MyParam UserBasic userBasic,HttpSession session){
+		boolean result = false;
+		UserBasic user = (UserBasic) session.getAttribute("user");
+		userBasic.setPassword(new Md5Hash(userBasic.getPassword(), ByteSource.Util.bytes(user.getEmail())).toString());
+        result = userService.updateByPrimaryKeySelective(userBasic);
 		return result;
 	}
 
