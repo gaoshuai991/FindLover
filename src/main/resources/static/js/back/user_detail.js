@@ -105,6 +105,8 @@ function initUserTab() {
     });
 
     $("#relation-div button").click(function () {
+        $("button[id*='-btn']").removeClass("btn-danger");
+        $(this).addClass("btn-danger");
         relationType = this.id.split("-")[0];
        loadUserRelation(relationType);
     })
