@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * @author sinnamm
- * @Date Create in  2017/11/2.
+ * @date Create in  2017/11/2.
  */
 @Controller
 @RequestMapping("admin/notice")
@@ -49,6 +49,7 @@ public class NoticeControllerBack {
             notice.setPubObj(userId);
         }
         notice.setPubTime(new Date());
+        notice.setAdminId(SessionUtils.getSessionAttr("admin",Admin.class).getId());
         logger.info(notice);
         boolean result = noticeService.insert(notice);
         if (result){
@@ -75,11 +76,7 @@ public class NoticeControllerBack {
         complain.setAdminId(admin.getId());
         boolean b = complainService.updateByPrimaryKeySelective(complain);
         boolean result = noticeService.insert(notice);
-        if (result && b){
-            return true;
-        }else {
-            return false;
-        }
+        return result && b;
 
     }
 
@@ -90,13 +87,12 @@ public class NoticeControllerBack {
 
     @GetMapping("getNotice")
     @ResponseBody
-    public PageInfo getNotice(Page<UserBasic> page, @RequestParam String identity, @RequestParam String column, @RequestParam String keyword){
+    public PageInfo<Notice> getNotice(Page<UserBasic> page, @RequestParam String identity, @RequestParam String column, @RequestParam String keyword){
         logger.info("接收参数：identity=" + identity + ",pageNum=" + page.getPageNum() + ",pageSize=" + page.getPageSize() + ",column=" + column + ",keyword=" + keyword);
-        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        PageHelper.startPage(page.getPageNum(), page.getPageSize(),"pub_time desc");
         List<Notice> notices = noticeService.selectAllByIdentity(identity,column,"%"+keyword+"%");
         notices.forEach(logger::info);
-        PageInfo pageInfo = new PageInfo(notices);
-        return pageInfo;
+        return new PageInfo<>(notices);
     }
 
     @DeleteMapping("delete/{id}")

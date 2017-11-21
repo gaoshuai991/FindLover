@@ -45,7 +45,7 @@ public class VisitTraceController {
    private Logger logger = LogManager.getLogger(VisitTraceController.class);
 
    @GetMapping
-   public String visitTrace(Model model, HttpServletRequest request){
+   public String visitTrace(Model model){
        UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
        int userId = userBasic.getId();
        PageHelper.startPage(1,4,"reg_time desc");
@@ -66,7 +66,7 @@ public class VisitTraceController {
 
     @GetMapping("trace")
     @ResponseBody
-    public PageInfo getVisitTrace(HttpServletRequest request,@RequestParam("pageNum")int pageNum){
+    public PageInfo<VisitTrace> getVisitTrace(HttpServletRequest request,@RequestParam("pageNum")int pageNum){
         logger.info("我看过谁");
        Integer userId = SessionUtils.getSessionAttr("user", UserBasic.class).getId();
         PageHelper.startPage(pageNum,6);
@@ -75,13 +75,12 @@ public class VisitTraceController {
            userService.userAttrHandler(visitTrace.getUserBasic());
        }
         visitTraces.forEach(logger::info);
-        PageInfo pageInfo = new PageInfo(visitTraces);
-        return pageInfo;
+        return new PageInfo<>(visitTraces);
     }
 
     @GetMapping("tracer")
     @ResponseBody
-    public PageInfo getVisitTracer(HttpServletRequest request,@RequestParam("pageNum")int pageNum){
+    public PageInfo<VisitTrace> getVisitTracer(@RequestParam("pageNum") int pageNum){
         logger.info("谁看过我");
         Integer userId = SessionUtils.getSessionAttr("user", UserBasic.class).getId();
         PageHelper.startPage(pageNum, 5);
@@ -90,8 +89,7 @@ public class VisitTraceController {
             userService.userAttrHandler(visitTrace.getUserBasic());
         }
         visitTraces.forEach(logger::info);
-        PageInfo pageInfo = new PageInfo(visitTraces);
-        return pageInfo;
+        return new PageInfo<>(visitTraces);
     }
 
 }
