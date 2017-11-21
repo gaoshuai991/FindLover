@@ -133,7 +133,7 @@ function btnClick() {
     //发布动态按钮
     $("#msgSubBtn").click(function () {
         if ($("#content").val().length>255){
-            swal("发布失败！内容超过250个字符", "error");
+            swal("发布失败！内容超过255个字符", "error");
             return;
         }else if ($("#content").val().trim().length==0){
             swal("发布失败！内容不能为空", "error");

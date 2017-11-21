@@ -51,10 +51,10 @@ function loadNotice() {
 }
 function deleteOne(id) {
     swal({
-        title: "确定要删除这条用户动态吗",
+        title: "确定要删除这条通知吗",
         icon: "warning",
         buttons: ["取消", "确定"]
-    }).then(result => {
+    }).then(result =>{
         if (result) {
             $.ajax({
                 url: contextPath + "admin/notice/delete/" + id,

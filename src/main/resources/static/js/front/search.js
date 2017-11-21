@@ -25,7 +25,7 @@ $(function () {
 
     $("#search-by-id").click(function () {
         var id = $("#search-id").val();
-        var reg = /^\d{6,11}$/
+        var reg = /^\d{6,10}$/
         if (reg.test(id)==true){
             $.ajax({
                 url:contextPath+"user/exists/"+id,
