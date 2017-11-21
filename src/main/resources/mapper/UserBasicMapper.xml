@@ -45,13 +45,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual,
+       id, email, password, nickname, tel, sex, birthday, photo, marry_status, height, sexual,
         education, workplace, salary, live_condition, authority, status, code, reg_time
+    </sql>
+
+    <sql id="search_Column_List">
+      user_basic.id as userId, nickname, sex, birthday, photo, marry_status, height,education,
+      workplace, salary,vip_deadline,star_deadline
     </sql>
 
     <select id="selectByEmail" resultType="UserBasic">
         SELECT
-        <include refid="Base_Column_List"/>
         <include refid="Base_Column_List"/>
         FROM user_basic
         WHERE email=#{email}
@@ -71,25 +75,26 @@
     </select>
 
     <select id="selectStarUser" resultType="UserBasic">
-        SELECT ub.*
-        from user_basic as ub LEFT OUTER JOIN user_asset as ua
-        ON ub.id=ua.id
+        SELECT
+        <include refid="search_Column_List"/>
+        from user_basic
+        LEFT OUTER JOIN user_asset ON user_basic.id=user_asset.id
         WHERE
-        DATE(ua.star_deadline)>now()
+        DATE(user_asset.star_deadline)>now()
         <if test="sex!=null">
-            AND ub.sex=#{sex}
+            AND user_basic.sex=#{sex}
         </if>
         <if test="workProvince!=null">
-            AND ub.workplace LIKE #{workProvince}
+            AND user_basic.workplace LIKE #{workProvince}
         </if>
-        AND ub.authority =1
-        AND ub.id!=#{id}
+        AND user_basic.authority =1
+        AND user_basic.id!=#{id}
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
-        SELECT user_basic.*,
+        SELECT
         signature,
-        vip_deadline,star_deadline
+        <include refid="search_Column_List"/>
         FROM user_basic
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
         LEFT OUTER JOIN user_asset  ON  user_basic.id=user_asset.id
@@ -103,9 +108,9 @@
     </select>
 
     <select id="selectUsersByIdsAndSex" resultMap="userSearch">
-        SELECT user_basic.*,
+        SELECT
         signature,
-        vip_deadline,star_deadline
+        <include refid="search_Column_List"/>
         FROM user_basic
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
         LEFT OUTER JOIN user_asset  ON  user_basic.id=user_asset.id
@@ -137,7 +142,6 @@
             AND user_basic.id != #{id}
         </where>
     </select>
-
 
     <select id="selectUserByUserPick" resultMap="userSearch" >
         SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,birthday,

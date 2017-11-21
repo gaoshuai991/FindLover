@@ -96,6 +96,7 @@ public class SearchController {
     @ResponseBody
     public UserInfo getLabelUser(@Param("labelId") Integer labelId, @Param("pageNum") Integer pageNum,HttpServletRequest request) {
         logger.info("labelId==" + labelId + "....pageNum==" + pageNum);
+        //获取对应标签下的用户
         List<UserLabel> userLabelList = userLabelService.select(new UserLabel(null, labelId));
         logger.info("userLabelList======" + userLabelList.toString());
         Integer[] ids = new Integer[userLabelList.size()];
@@ -108,7 +109,7 @@ public class SearchController {
         }
         logger.info("more users ids.length="+ids.length);
         UserBasic user = SessionUtils.getSessionAttr("user",UserBasic.class);
-        PageHelper.startPage(pageNum, 6);
+        PageHelper.startPage(pageNum, 9);
         List<UserBasic> userBasicList = userService.selectUserByIdsAndSex(ids,user.getSexual());
         userBasicList.forEach(logger::info);
 
