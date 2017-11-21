@@ -25,7 +25,7 @@ function niceValidator() {
             'city': 'required;',
             'marry_status': 'required;',
             'education': 'required;',
-            'height': 'required;range(100~249)',
+            'height': 'required;range(145~210)',
             'salary': 'required;',
             'tel': 'required;mobile',
             'email': 'required;email;remote[checkEmail, email]',
