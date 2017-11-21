@@ -20,6 +20,8 @@ public interface UserService extends BaseService<UserBasic> {
 
 	List<UserBasic> selectUserByIds(Integer[] ids);
 
+	List<UserBasic> selectUserByIdsAndSex(Integer[] ids,String sex);
+
 	/**
 	 * 修改用户基本同时添加高收入、高学历标签
 	 * @param userBasic 用户基本信息

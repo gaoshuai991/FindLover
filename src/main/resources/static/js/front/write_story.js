@@ -18,9 +18,13 @@ function initUeditor() {
 }
 function niceValidator() {
     $("#storyForm").validator({
+        rules: {
+            title: [/^([\u4E00-\u9FA5]|\w){2,20}$/, "昵称应为2到20位字符"]
+        },
         fields: {
             'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]',
-            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]'
+            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]',
+            'title':'required;title'
         },
         valid:  function(form){
             $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,50)+"...");

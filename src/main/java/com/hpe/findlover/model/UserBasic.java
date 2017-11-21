@@ -465,13 +465,13 @@ public class UserBasic implements Serializable {
     @Override
     public String toString() {
         return "UserBasic{" +
-                "age=" + age +
+                "id=" + id +
+                ",age=" + age +
                 ", isVip=" + isVip +
                 ", isStar=" + isStar +
                 ", isAuthenticated=" + isAuthenticated +
                 ", userDetail=" + userDetail +
                 ", userAsset=" + userAsset +
-                ", id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +

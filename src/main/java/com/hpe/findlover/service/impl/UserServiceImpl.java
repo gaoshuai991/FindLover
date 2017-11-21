@@ -76,6 +76,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 	}
 
 	@Override
+	public List<UserBasic> selectUserByIdsAndSex(Integer[] ids, String sex) {
+		return userBasicMapper.selectUsersByIdsAndSex(ids,sex);
+	}
+
+	@Override
 	@Transactional(rollbackFor = RuntimeException.class)
 	public boolean updateUserBasicAndUserLabel(UserBasic userBasic) {
 

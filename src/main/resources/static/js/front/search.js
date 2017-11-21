@@ -258,7 +258,8 @@ function initLabelUser() {
                       swal("提示","没有更多数据啦，扩大一下搜索条件试试？","error");
                       return;
                   }
-                  loadMoreUser(url,data,type);
+                  var newData={"labelId":pageLabel,"pageNum":pageNum};
+                  loadMoreUser(url,newData,type);
             });
 
         }

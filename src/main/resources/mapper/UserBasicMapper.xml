@@ -87,7 +87,7 @@
     </select>
 
     <select id="selectUsersByIds" resultMap="userSearch">
-        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,
+        SELECT user_basic.*,
         signature,
         vip_deadline,star_deadline
         FROM user_basic
@@ -97,6 +97,23 @@
         authority =1
         AND user_basic.id IN
         <foreach collection="array" open="("
+                 separator="," close=")" item="val">
+            #{val}
+        </foreach>
+    </select>
+
+    <select id="selectUsersByIdsAndSex" resultMap="userSearch">
+        SELECT user_basic.*,
+        signature,
+        vip_deadline,star_deadline
+        FROM user_basic
+        LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
+        LEFT OUTER JOIN user_asset  ON  user_basic.id=user_asset.id
+        WHERE
+        authority =1
+        AND sex=#{sex}
+        AND user_basic.id IN
+        <foreach collection="ids" open="("
                  separator="," close=")" item="val">
             #{val}
         </foreach>
