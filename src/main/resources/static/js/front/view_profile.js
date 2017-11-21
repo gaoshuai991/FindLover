@@ -25,9 +25,9 @@ $(function () {
 function searchById() {
     $("#id-btn").click(function () {
         var $idInput = $("#id-input");
-        if (!/^\d+$/.test($idInput.val())) {
+        if (!/^\d{6,10}$/.test($idInput.val())) {
             swal("提示", "ID格式错误！", "warning");
-        } else {
+        }else {
             $.get(contextPath + "user/exists/" + $idInput.val(), {}, function (result) {
                 if (result == "true") {
                     window.location = contextPath + "profile/" + $idInput.val();

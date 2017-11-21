@@ -487,7 +487,7 @@ public class UserCenterController {
 	@CachePut(key = "'pick-'+#userPick.id")
 	public Object updateUserPick(@MyParam UserPick userPick,@MyParam String workplace_province1,@MyParam String workplace_city1
 			,@MyParam String birthplace_province1,@MyParam String birthplace_city1) {
-		boolean result = false;
+		boolean result;
 		if (workplace_city1 != null) {
 			userPick.setWorkplace(workplace_province1 + "-" + workplace_city1);
 		} else {

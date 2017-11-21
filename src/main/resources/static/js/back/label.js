@@ -57,31 +57,46 @@ function initAddBtn() {
     $("#add-btn").click(function () {
         swal("请输入要添加的标签名称：", {
             content: "input"
-        }).then(value => {
-            if (value === "") {
+        }).then(name => {
+            if (name==null || name == "") {
                 swal("Error", "标签名称不能为空！", "error");
             } else {
-                $.post(contextPath + "admin/user/label/exists", {"name": value}, function (result) {
+                $.post(contextPath + "admin/user/label/exists", {"name": name}, function (result) {
                     if (result!="true") {
-                        $.post(contextPath + "admin/user/label", {"name": value}, function (data) {
-                            if (data) {
-                                swal("提示", "标签添加成功！", "success");
-                                $("#label-table").append($('<tr id="tr-' + data + '">\n' +
-                                    '                           <td>' + data + '</td>\n' +
-                                    '                           <td class="editable">' + value + '</td>\n' +
-                                    '                           <td><button id="del-' + data + '" class="button button-caution button-pill button-small">删除</button></td>\n' +
-                                    '                       </tr>'));
-                                $("#label-table").editableTableWidget();
-                                initTdOnChange();
-                                initDelBtn();
+                        swal("请输入要添加的标签描述：", {
+                            content: "input"
+                        }).then(meaning => {
+                            if (meaning == null||meaning == "") {
+                                swal("Error", "标签描述不能为空！", "error");
                             } else {
-                                errorAlert();
+                                $.post(contextPath + "admin/user/label/exists", {"meaning": meaning}, function (result) {
+                                    if (result!="true") {
+                                        $.post(contextPath + "admin/user/label", {"name": name,"meaning": meaning}, function (data) {
+                                            if (data) {
+                                                swal("提示", "标签添加成功！", "success");
+                                                $("#label-table").append($('<tr id="tr-' + data + '">\n' +
+                                                    '                           <td>' + data + '</td>\n' +
+                                                    '                           <td class="editable">' + name + '</td>\n' +
+                                                    '                           <td>' + meaning + '</td>\n' +
+                                                    '                           <td><button id="del-' + data + '" class="button button-caution button-pill button-small">删除</button></td>\n' +
+                                                    '                       </tr>'));
+                                                $("#label-table").editableTableWidget();
+                                                initTdOnChange();
+                                                initDelBtn();
+                                            } else {
+                                                errorAlert();
+                                            }
+                                        })
+                                    } else {
+                                        swal("Error", "标签描述已存在！", "error");
+                                    }
+                                }, "text");
                             }
-                        })
+                        });
                     } else {
                         swal("Error", "标签名称已存在！", "error");
                     }
-                }, "text")
+                }, "text");
             }
         });
     });

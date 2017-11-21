@@ -4,6 +4,7 @@ import com.hpe.findlover.util.Identity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.filter.authc.UserFilter;
 
 import javax.servlet.ServletRequest;
@@ -17,6 +18,7 @@ import java.io.IOException;
 public class IdentityFilter extends UserFilter {
 	private final Logger logger = LogManager.getLogger(IdentityFilter.class);
 	private Identity identity;
+
 
 	public IdentityFilter(Identity identity) {
 		this.identity = identity;

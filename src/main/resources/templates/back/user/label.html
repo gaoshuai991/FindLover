@@ -32,7 +32,8 @@
                                     <thead>
                                     <tr>
                                         <th>标签ID</th>
-                                        <th width="65%">名称</th>
+                                        <th width="35%">名称</th>
+                                        <th>描述</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -40,6 +41,7 @@
                                     <tr th:each="label:${labels}" th:id="'tr-'+${label.id}">
                                         <td th:text="${label.id}"></td>
                                         <td th:text="${label.name}" class="editable"></td>
+                                        <td th:text="${label.meaning}"></td>
                                         <td>
                                             <button th:id="'del-'+${label.id}" class="button button-caution button-pill button-small">删除</button>
                                         </td>

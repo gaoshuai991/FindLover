@@ -161,11 +161,9 @@ public class UserControllerBack {
 
 	@PostMapping("label/exists")
 	@ResponseBody
-	public boolean selectLabel(@RequestParam String name) {
-		Label label = new Label();
-		label.setName(name);
+	public boolean selectLabel(Label label) {
 		boolean result = labelService.selectOne(label) != null;
-		logger.debug("名称为“" + name + "”的标签是否存在：" + result);
+		logger.debug("内容为“" + label + "”的标签是否存在：" + result);
 		return result;
 	}
 

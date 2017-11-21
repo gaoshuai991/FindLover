@@ -13,9 +13,9 @@ public class Label {
     public Label() {
     }
 
-    public Label(String name) {
-        this.id=id;
+    public Label(String name,String meaning) {
         this.name = name;
+        this.meaning = meaning;
     }
 
     public void setMeaning(String meaning) {
