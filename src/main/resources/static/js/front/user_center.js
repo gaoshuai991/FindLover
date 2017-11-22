@@ -42,6 +42,7 @@ $(function () {
     initAgeDropdown(undefined);
     selectUserBasic1();
 });
+
 function setPanel() {
     var $panels = $("div[id$='Panel']");
     $panels.removeClass("active");
@@ -287,7 +288,7 @@ function initRechargeValidator() {
     $("#recharge").validator({
         rules: {
             // 使用正则表达式定义规则
-            money: [/^[1-9]\d{0,3}$/, "请填写数字"],
+            money: [/^[1-9]\d{0,3}$/, "范围在1-9999"],
         },
         fields: {
             'cost': 'required;money;range(1~9999)'
@@ -493,7 +494,11 @@ function initTabClick() {
 
     $("#cost").change(function () {
         var text = $(this).val();
-        if (text != undefined && text != '') {
+        if(isNaN(text)){
+            $("#needpayspan").text("￥ " + 0);
+            return;
+        }
+        if (text != undefined && text != '' ) {
             $("#needpayspan").text("￥ " + parseInt(text));
         }
     });
