@@ -77,7 +77,7 @@ public class VIPController {
                 userAsset.setVipDeadline(LoverUtil.addMonth(userAsset.getVipDeadline(), Integer.parseInt(vipBuyDay)));
             }
         }
-        if (userAssetService.updateByPrimaryKey(userAsset)) {
+        if (userAssetService.updateByPrimaryKeySelective(userAsset)) {
             list.add("VIP购买成功");
             user.setVip(true);
             session.setAttribute("user",user);
@@ -137,7 +137,7 @@ public class VIPController {
                 userAsset.setCost(userAsset.getCost() + starBuyMoney);
             }
         }
-        if (userAssetService.updateByPrimaryKey(userAsset)) {
+        if (userAssetService.updateByPrimaryKeySelective(userAsset)) {
             list.add("星级会员购买成功");
             userBasic.setStar(true);
             session.setAttribute("user",userBasic);
