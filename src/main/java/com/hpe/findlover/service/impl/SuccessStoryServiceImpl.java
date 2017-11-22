@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -72,9 +73,9 @@ public class SuccessStoryServiceImpl extends BaseServiceImpl<SuccessStory> imple
 	}
 
 	@Override
-	public boolean insertStory(SuccessStory successStory, int userId) {
+	public boolean insertStory(SuccessStory successStory, int userId,HttpServletRequest request) {
 		int result1 = successStoryMapper.insert(successStory);
-		String url = "http://localhost/success_story/confirmSuccessStory/"+successStory.getId()+"?left="+userId;
+		String url = LoverUtil.getBasePath(request)+"/success_story/confirmSuccessStory/"+successStory.getId()+"?left="+userId;
 		String a = "<a href=\"" + url + "\">";
 		Notice notice = new Notice(null, "成功故事审核",
 				"尊敬的用户，您的爱人发布了一条成功故事等待您审核呢，快来看看吧" + a + url + "</a>",

@@ -1,4 +1,5 @@
 $(function () {
+    $("#starBuyMoney").val("￥52.10");
     //点击一个月的立即开通VIP会员
     $("#modal1").click(function () {
         $("#VIPBuyDay").val("1")

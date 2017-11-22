@@ -40,7 +40,7 @@ function loadMessage() {
                     ' <td>' + story.successTime+ '</td>\n');
                 switch (story.status){
                     case 0:
-                        tr.append("<td><button class=\"btn btn-sm btn-warning\"><i class=\"fa fa-times\"></i>&nbsp;已审核</button></td>");
+                        tr.append("<td><button class=\"btn btn-sm btn-success\"><i class=\"fa fa-check\"></i>&nbsp;已审核</button></td>");
                         tr.append("<td><button id = 'story-status-"+ story.id+"-0' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i>&nbsp;已下架</button></td>");
                         tr.append($('<td><a class="btn btn-sm btn-info" href="' + contextPath + 'admin/success_story/success_story_detail/' + story.id + '"><i class="fa fa-edit"></i>&nbsp;查看详情</a></td>'));
                         break;

@@ -20,7 +20,6 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
-
     /**
      * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
      */
@@ -31,7 +30,7 @@
 
         // 服务器统一请求接口路径
         //, serverUrl: URL+"jsp/controller.jsp"
-        , serverUrl: "http://localhost/ueditor/uploadconfig"
+        , serverUrl: contextPath+"ueditor/uploadconfig"
 
 		// , imageUrl:"writer/uploadfile"
 		// , imagePath:""

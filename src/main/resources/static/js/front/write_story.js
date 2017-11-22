@@ -23,7 +23,7 @@ function niceValidator() {
         },
         fields: {
             'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]',
-            'photo': 'required;accept[png|jpg|bmp|gif|jpeg]',
+            'ephoto': 'required;accept[png|jpg|bmp|gif|jpeg]',
             'title':'required;title'
         },
         valid:  function(form){

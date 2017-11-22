@@ -79,7 +79,9 @@
                     if (data === "success") {
                         $("#operator").hide();
                         swal("发布成功！", "", "success");
-                    } else {
+                    } else if (data==="notSinglle") {
+                        swal("您或者对方已经发布过成功故事了！！", "", "error");
+                    }else{
                         swal("发布失败！", "", "error");
                     }
                 },

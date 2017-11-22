@@ -1,18 +1,22 @@
 package com.hpe.findlover.contoller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hpe.findlover.model.EssayPhoto;
 import com.hpe.findlover.service.EssayPhotoService;
 import com.hpe.findlover.service.UploadService;
+import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +39,7 @@ public class UeditorController {
      */
     @RequestMapping("uploadconfig")
     @ResponseBody
-    public String uploadConfig(){
+    public String uploadConfig(HttpServletRequest request){
         BufferedReader reader = null;
         StringBuilder laststr = new StringBuilder();
         try{
@@ -58,8 +62,10 @@ public class UeditorController {
                 }
             }
         }
-        logger.debug("返回的ueditor配置文件内容："+laststr);
-        return laststr.toString();
+        JSONObject result = JSONObject.parseObject(laststr.toString());
+        result.put("imageUrlPrefix", LoverUtil.getBasePath(request) + "file?path=");
+        logger.debug("返回的ueditor配置文件内容："+JSONObject.toJSONString(result));
+        return JSONObject.toJSONString(result);
     }
 
     /**

@@ -41,7 +41,7 @@ public class SuccessStoryController {
     Logger logger = LoggerFactory.getLogger(SuccessStoryController.class);
     @PostMapping("write_story")
     public String uploadEssay(HttpSession session, String essays, int otherId, String title,
-                              MultipartFile ephoto, String tcontent,Model model) throws Exception{
+                              MultipartFile ephoto, String tcontent,Model model,HttpServletRequest request) throws Exception{
         SuccessStory successStory=new SuccessStory();
         UserBasic user= (UserBasic) session.getAttribute("user");
         successStory.setLeftUser(user.getId());
@@ -55,7 +55,7 @@ public class SuccessStoryController {
         successStory.setLikeCount(0);
         successStory.setReplyCount(0);
         model.addAttribute("msg", essays);
-        if (successStoryService.insertStory(successStory,user.getId())){
+        if (successStoryService.insertStory(successStory,user.getId(),request)){
             return "front/story_view";
         }
         return "front/error";
@@ -168,9 +168,7 @@ public class SuccessStoryController {
                 return "error";
             }
         }else {
-            return "error";
+            return "notSinglle";
         }
-
     }
-
 }

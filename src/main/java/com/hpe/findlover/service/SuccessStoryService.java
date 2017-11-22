@@ -3,6 +3,7 @@ package com.hpe.findlover.service;
 import com.hpe.findlover.model.SuccessStory;
 import com.hpe.findlover.model.UserBasic;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface SuccessStoryService extends BaseService<SuccessStory> {
     /**
      * 插入成功故事并发通知
      */
-    boolean insertStory(SuccessStory successStory,int userId);
+    boolean insertStory(SuccessStory successStory,int userId,HttpServletRequest request);
     List<SuccessStory> selectAllByStatus();
 
     /**
