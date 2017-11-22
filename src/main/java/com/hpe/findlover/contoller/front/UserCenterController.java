@@ -281,11 +281,11 @@ public class UserCenterController {
 				insertUserAsset.setId(user.getId());
 				insertUserAsset.setCost(cost);
 				insertUserAsset.setAsset(cost.intValue());
-				result = userAssetService.insert(insertUserAsset);
+				result = userAssetService.insertSelective(insertUserAsset);
 			} else {//用户资产为非空情况
 				userAsset.setCost(userAsset.getCost() + cost);
 				userAsset.setAsset(userAsset.getAsset() + cost.intValue());
-				result = userAssetService.updateByPrimaryKey(userAsset);
+				result = userAssetService.updateByPrimaryKeySelective(userAsset);
 			}
 		}
 		return result;

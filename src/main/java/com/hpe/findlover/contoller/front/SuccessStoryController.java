@@ -158,7 +158,7 @@ public class SuccessStoryController {
     @PutMapping("pass")
     @ResponseBody
     public String pass(SuccessStory successStory,@RequestParam int left){
-        logger.info("通过的成功故事："+successStory);
+        logger.debug("通过的成功故事："+successStory);
         UserBasic userBasic = SessionUtils.getSessionAttr("user",UserBasic.class);
         if (successStoryService.checkUser(userBasic.getId(),left)){
             boolean result = successStoryService.updateByPrimaryKeySelective(successStory);

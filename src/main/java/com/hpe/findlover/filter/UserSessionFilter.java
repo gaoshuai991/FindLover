@@ -21,15 +21,15 @@ public class UserSessionFilter extends AccessControlFilter {
 	protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
 		Subject subject = getSubject(request, response);
 		if (subject == null) { // 没有登录
-			logger.info("当前Subject为null");
+			logger.debug("当前Subject为null");
 			return false;
 		} else {
 			if (subject.isRemembered()) {
-				logger.info("当前Subject " + subject.getPrincipal() + " Is Remembered");
+				logger.debug("当前Subject " + subject.getPrincipal() + " Is Remembered");
 			}
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			if (session.getAttribute("user") == null) {
-				logger.info("填入User对象数据到Session--");
+				logger.debug("填入User对象数据到Session--");
 				session.setAttribute("user", userService.selectByEmail((String) subject.getPrincipal()));
 			}
 		}

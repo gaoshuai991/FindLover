@@ -21,7 +21,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.17.46.192:3306/findlover?useSSL=false # your profile
+      url: jdbc:mysql://172.18.21.3:3306/findlover?useSSL=false # your profile
       username: root # your profile
       password: gss991 # your profile
       initial-size: 1
@@ -35,7 +35,7 @@ fdfs:
   thumbImage:
     width: 150
     height: 150
-  trackerList: 172.17.46.190:22122 # your profile
+  trackerList: 172.18.21.13:22122 # your profile
 
 # Mybatis config
 mybatis:
