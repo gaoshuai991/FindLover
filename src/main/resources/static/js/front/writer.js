@@ -19,7 +19,7 @@ function initEssayForm() {
         stopOnError: true,
         valid: function (form) {
             var tcontent = UE.getEditor('editor').getContentTxt();
-            $('#brief').val(tcontent.substring(0,50)+'...');
+            $('#brief').val(tcontent.substring(0,30)+'...');
             form.submit();
         }
     });
