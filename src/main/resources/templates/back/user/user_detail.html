@@ -84,7 +84,9 @@
                                     <div class="tab-pane fade" id="photos-pane">
                                         <div class="f-content">
                                             <div class="container-fluid">
-
+                                                <div th:each="photo:${photos}" class="col-md-4" style="padding: 5px">
+                                                    <img th:src="@{/file(path=${photo})}" style="width: 100%;height: 220px;">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +96,7 @@
                                                 <div class="box-body">
                                                     <div class="container-fluid" style="margin-bottom: 15px">
                                                         <div id="relation-div" class="btn-group" style="float: left">
-                                                            <button id="follower-btn" type="button" class="btn btn-info ">谁关注我</button>
+                                                            <button id="follower-btn" type="button" class="btn btn-info btn-warning ">谁关注我</button>
                                                             <button id="follow-btn" type="button" class="btn btn-info ">我关注谁</button>
                                                             <button id="tracer-btn" type="button" class="btn btn-info ">谁看过我</button>
                                                             <button id="trace-btn" type="button" class="btn btn-info">我看过谁</button>

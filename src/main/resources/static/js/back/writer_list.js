@@ -205,6 +205,8 @@ function initPageSizeSel() {
 
 function initIdentityBtn() {
     $("button[id*='writer-btn']").click(function () {
+        $("button[id^='writer-btn-']").removeClass("btn-warning");
+        $(this).addClass("btn-warning");
         identity = this.id.split("-")[2];
         goPage(1);
     });

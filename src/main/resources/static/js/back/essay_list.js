@@ -155,10 +155,12 @@ function initPageSizeSel() {
 }
 
 function initIdentityBtn() {
-    $("button[id*='essay-btn']").click(function () {
+    $("button[id^='essay-btn-']").click(function () {
+        $("button[id^='essay-btn-']").removeClass("btn-warning");
+        $(this).addClass("btn-warning");
         identity = this.id.split("-")[2];
         goPage(1);
-    });
+    })
 }
 
 function initSearchBtn() {

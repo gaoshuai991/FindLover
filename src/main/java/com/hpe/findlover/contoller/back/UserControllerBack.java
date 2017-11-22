@@ -7,7 +7,6 @@ import com.github.pagehelper.PageInfo;
 import com.hpe.findlover.model.*;
 import com.hpe.findlover.service.BaseService;
 import com.hpe.findlover.service.*;
-import com.hpe.findlover.util.LoverUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -19,11 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
-import java.text.ParseException;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Gss
@@ -42,9 +39,10 @@ public class UserControllerBack {
 	private final LabelService labelService;
 	private final FollowService followService;
 	private final VisitTraceService visitTraceService;
+	private final UserPhotoService userPhotoService;
 
 	@Autowired
-	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService,FollowService followService,VisitTraceService visitTraceService) {
+	public UserControllerBack(UserService userBasicService, UserAssetService userAssetService, UserDetailService userDetailService, UserLifeService userLifeService, UserStatusService userStatusService, UserPickService userPickService, LabelService labelService, FollowService followService, VisitTraceService visitTraceService, UserPhotoService userPhotoService) {
 		this.userBasicService = userBasicService;
 		this.userAssetService = userAssetService;
 		this.userDetailService = userDetailService;
@@ -54,6 +52,7 @@ public class UserControllerBack {
 		this.labelService = labelService;
 		this.followService = followService;
 		this.visitTraceService = visitTraceService;
+		this.userPhotoService = userPhotoService;
 	}
 
 	@GetMapping("basic")
@@ -124,7 +123,14 @@ public class UserControllerBack {
 	}
 
 	@GetMapping("details/{id}")
-	public String userDetail(@ModelAttribute @PathVariable int id) {
+	public String userDetail(@ModelAttribute @PathVariable int id,Model model) {
+		UserPhoto userPhoto = new UserPhoto();
+		userPhoto.setUserId(id);
+		List<UserPhoto> userPhotos = userPhotoService.select(userPhoto);
+		List<String> photos = userPhotos.stream().map(UserPhoto::getPhoto).collect(Collectors.toList());
+		photos.add(0,userBasicService.selectByPrimaryKey(id).getPhoto());
+		model.addAttribute("photos", photos);
+		logger.debug("photos:"+photos);
 		return "back/user/user_detail";
 	}
 
