@@ -67,7 +67,7 @@ public class SuccessStoryController {
 
     @GetMapping
     public String successStory(Model model){
-        PageHelper.startPage(1,8,"success_time desc");
+        PageHelper.startPage(1,8);
         List<SuccessStory> list= successStoryService.selectAllByStatus();
         model.addAttribute("list",list);
         return"front/success_story";

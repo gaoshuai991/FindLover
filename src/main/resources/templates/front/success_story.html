@@ -38,7 +38,7 @@
                                         <span class="entry-1" th:text="${#dates.format(successStory.successTime,'yyyy-MM-dd')}"></span>
                                     </div>
                                     <div class="suceess_story-content-info">
-                                        <h4><a th:href="@{'/success_story/success_story_info/'+${successStory.id}}" th:text="${successStory.leftUser+' & '+successStory.rightUser}"></a></h4>
+                                        <h4><a th:href="@{'/success_story/success_story_info/'+${successStory.id}}" th:text="${successStory.userLeft.nickname+' & '+successStory.userRight.nickname}"></a></h4>
                                         <p th:text="${successStory.brief}">
                                         </p>
                                     </div>
