@@ -4,19 +4,6 @@ spring:
   thymeleaf:
     cache: false
     mode: HTML
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    dbcp2:
-      driver-class-name: com.mysql.jdbc.Driver
-      # url: jdbc:mysql:///findlover?useSSL=false
-      url: jdbc:mysql://172.17.46.192:3306/findlover?useSSL=false
-      username: root
-      #password: root
-      password: gss991
-      initial-size: 1
-      min-idle: 1
-      max-total: 2
-      max-wait-millis: 6000
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -30,7 +17,25 @@ spring:
     ehcache:
       config: ehcache.xml
     cache-names: user-cache,dict-cache
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://172.17.46.192:3306/findlover?useSSL=false # your profile
+      username: root # your profile
+      password: gss991 # your profile
+      initial-size: 1
+      min-idle: 1
+      max-total: 2
+      max-wait-millis: 6000
 
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  thumbImage:
+    width: 150
+    height: 150
+  trackerList: 172.17.46.190:22122 # your profile
 
 # Mybatis config
 mybatis:
@@ -53,11 +58,3 @@ mapper:
     - com.hpe.util.BaseTkMapper
   not-empty: false
   identity: MYSQL
-
-fdfs:
-  soTimeout: 1500
-  connectTimeout: 600
-  thumbImage:             #缩略图生成参数
-    width: 150
-    height: 150
-  trackerList: 172.17.46.190:22122

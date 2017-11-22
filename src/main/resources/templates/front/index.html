@@ -206,7 +206,7 @@
                     <ul>
                         <li th:each="success_story:${successStories}">
                             <div class="suceess_story-date">
-                                <span th:text="${success_story.successTime}" class="entry-1">Dec 20, 2015</span>
+                                <span th:text="${#dates.format(success_story.successTime,'yyyy-MM-dd HH:mm:ss')}" class="entry-1">Dec 20, 2015</span>
                             </div>
                             <div class="suceess_story-content-container">
                                 <figure class="suceess_story-content-featured-image">

@@ -63,7 +63,7 @@ public class UeditorController {
             }
         }
         JSONObject result = JSONObject.parseObject(laststr.toString());
-        result.put("imageUrlPrefix", LoverUtil.getBasePath(request) + "file?path=");
+        result.put("imageUrlPrefix", LoverUtil.getBasePath(request) + "/file?path=");
         logger.debug("返回的ueditor配置文件内容："+JSONObject.toJSONString(result));
         return JSONObject.toJSONString(result);
     }
