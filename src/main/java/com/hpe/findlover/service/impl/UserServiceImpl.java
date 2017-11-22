@@ -52,6 +52,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 
 	@Override
 	public List<UserBasic> selectStarUser(UserPick userPick) {
+		userBasicMapper.selectStarUser(userPick).forEach(logger::info);
 		return userBasicMapper.selectStarUser(userPick);
 	}
 

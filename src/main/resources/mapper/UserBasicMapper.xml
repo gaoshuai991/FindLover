@@ -74,7 +74,7 @@
         </if>
     </select>
 
-    <select id="selectStarUser" resultType="UserBasic">
+    <select id="selectStarUser" resultMap="userSearch">
         SELECT
         <include refid="search_Column_List"/>
         from user_basic
