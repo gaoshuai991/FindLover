@@ -24,10 +24,11 @@ function niceValidator() {
         fields: {
             'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]',
             'ephoto': 'required;accept[png|jpg|bmp|gif|jpeg]',
-            'title':'required;title'
+            'title':'required;title',
+            'essays': 'required'
         },
         valid:  function(form){
-            $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,50)+"...");
+            $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,30)+"...");
             $("#essays").val(UE.getEditor('editor').getContent());
             form.submit();
         },
