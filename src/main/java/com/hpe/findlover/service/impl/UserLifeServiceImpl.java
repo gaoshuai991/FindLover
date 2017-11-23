@@ -46,7 +46,7 @@ public class UserLifeServiceImpl extends BaseServiceImpl<UserLife> implements Us
 		if (this.selectByPrimaryKey(userLife.getId()) != null) {//用户修改工作生活信息
 			result = this.updateByPrimaryKey(userLife);
 		} else {//用户第一次填写工作生活信息
-			result = this.insertSelective(userLife);
+			result = this.insert(userLife);
 		}
 
 		//添加有车一族标签

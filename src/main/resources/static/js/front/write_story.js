@@ -25,7 +25,7 @@ function niceValidator() {
             'otherId': 'required;length(3~16);remote['+contextPath+'checkid, otherId]',
             'ephoto': 'required;accept[png|jpg|bmp|gif|jpeg]',
             'title':'required;title',
-            'essays': 'required'
+            'test-editormd-markdown-doc': 'required'
         },
         valid:  function(form){
             $("#tcontent").val(UE.getEditor('editor').getContentTxt().substring(0,30)+"...");

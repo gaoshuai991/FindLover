@@ -53,9 +53,9 @@
                              class="message-flag" data-toolbar-style="warning">
 
                         <!-- 未开通vip之后显示一下页面 -->
-                        <img th:hidden="${vipDate!=null &&  vipDate!=0}" th:src="@{/images/vip-grey.png}"
+                        <img th:hidden="${vipDate!=null && vipDate!=0}" th:src="@{/images/vip-grey.png}"
                              src="../../static/images/vip.png" class="message-flag">
-                        <img th:hidden="${starDate!=null &&  starDate!=0}" th:src="@{/images/star-0-grey.png}"
+                        <img th:hidden="${starDate!=null && starDate!=0}" th:src="@{/images/star-0-grey.png}"
                              src="../../static/images/star-0.png" class="message-flag">
                         <!--光标放到上面两个img控件后显示的内容-->
                         <div id="vip-deadline" class="hidden">

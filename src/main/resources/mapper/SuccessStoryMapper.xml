@@ -47,9 +47,9 @@
     WHERE ${arg0} LIKE #{arg1}
   </select>
   <select id="selectAllByStatus" resultType="SuccessStory">
-    SELECT  s.*,left_user.nickname AS 'userLeft.nickname',right_user.nickname AS 'userRight.nickname'
+    SELECT  s.*,left_user.nickname 'userLeft.nickname',right_user.nickname 'userRight.nickname'
     FROM success_story s,user_basic left_user,user_basic right_user
-    WHERE  s.status=1 AND s.left_user=left_user.id AND s.right_user=right_user.id ORDER BY success_time DESC
+    WHERE  s.status=1 AND s.left_user=left_user.id AND s.right_user=right_user.id
   </select>
 
 
