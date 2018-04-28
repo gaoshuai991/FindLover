@@ -24,6 +24,7 @@
 
 package com.hpe.util;
 
+import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
 
@@ -33,6 +34,7 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * @author liuzh
  * @since 2015-09-06 21:53
  */
+@RegisterMapper
 public interface BaseTkMapper<T> extends Mapper<T>, MySqlMapper<T> {
     //TODO
     //FIXME 特别注意，该接口不能被扫描到，否则会出错

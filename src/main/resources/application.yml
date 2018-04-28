@@ -1,13 +1,12 @@
 server:
-  port: 80
+  port: 8088
 spring:
   thymeleaf:
     cache: false
-    mode: HTML
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  http:
+  servlet:
     multipart:
       enabled: true
       max-file-size: 5MB
@@ -21,21 +20,21 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.17.46.192:3306/findlover?useSSL=false # your profile
+      url: jdbc:mysql://58.87.118.28:3306/findlover?useSSL=false # your profile
       username: root # your profile
-      password: gss991 # your profile
+      password: Gaoshuai991. # your profile
       initial-size: 1
       min-idle: 1
       max-total: 2
       max-wait-millis: 6000
 
 fdfs:
-  soTimeout: 1500
-  connectTimeout: 600
+  soTimeout: 3500
+  connectTimeout: 5000
   thumbImage:
     width: 150
     height: 150
-  trackerList: 172.17.46.190:22122 # your profile
+  trackerList: 58.87.118.28:22122 # your profile
 
 mybatis:
   type-aliases-package: com.hpe.findlover.model
@@ -52,8 +51,8 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
 
-mapper:
-  mappers:
-    - com.hpe.util.BaseTkMapper
-  not-empty: false
-  identity: MYSQL
+#mapper:
+#  mappers:
+#    - com.hpe.util.BaseTkMapper
+#  not-empty: false
+#  identity: MYSQL

@@ -1,6 +1,8 @@
 package com.hpe.findlover.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.github.tobato.fastdfs.service.DefaultFastFileStorageClient;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.hpe.findlover.authenticator.CustomModularRealmAuthenticator;
 import com.hpe.findlover.filter.IdentityFilter;
 import com.hpe.findlover.realm.AdminRealm;
@@ -24,6 +26,7 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import javax.servlet.Filter;
 import java.util.Arrays;
@@ -37,6 +40,17 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 	private Logger logger = LogManager.getLogger(ShiroConfig.class);
+
+	/**
+	 * 把FastDFFileStorageClient配置成prototype，以便多线程下载图片
+	 * @return
+	 */
+	@Bean
+	@Scope("prototype")
+	public FastFileStorageClient fastFileStorageClient(){
+		FastFileStorageClient defaultFastFileStorageClient = new DefaultFastFileStorageClient();
+		return defaultFastFileStorageClient;
+	}
 
 	@Bean("lifecycleBeanPostProcessor")
 	public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {

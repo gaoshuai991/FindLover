@@ -9,12 +9,11 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
@@ -25,6 +24,7 @@ import java.nio.charset.Charset;
 public class UploadServiceImpl implements UploadService {
 	private Logger logger = LogManager.getLogger(UploadServiceImpl.class);
 	@Autowired
+	@Qualifier("fastFileStorageClient")
 	private FastFileStorageClient storageClient;
 
 	@Override
@@ -65,7 +65,6 @@ public class UploadServiceImpl implements UploadService {
 		StorePath storePath = StorePath.praseFromUrl(filePath);
 		logger.debug("下载文件：" + filePath);
 		return storageClient.downloadFile(storePath.getGroup(), storePath.getPath(), new DownloadByteArray());
-
 	}
 
 	@Override

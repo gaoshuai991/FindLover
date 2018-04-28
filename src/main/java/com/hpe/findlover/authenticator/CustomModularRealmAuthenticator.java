@@ -9,6 +9,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.realm.Realm;
 
+
 /**
  * 自定义验证器
  * 分别定义Realm时，对应Realm的name必须包含对应token中的type，如UserRealm必须包含user
